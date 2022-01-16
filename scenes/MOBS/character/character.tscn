@@ -62,6 +62,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -13.9068 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
