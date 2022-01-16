@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/objects/weapons/sword1/sword1_attack.tres" type="Animation" id=1]
+[ext_resource path="res://scenes/objects/weapons/sword1/sword1.gd" type="Script" id=2]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/weapon_regular_sword.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 6.55603 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.3865, 5.02646 )
+
+[node name="sword1" type="Area2D"]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16.6489, -8.62175 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -8, -16 )
+rotation = 4.71239
+texture = ExtResource( 3 )
+
+[node name="sword_animation" type="AnimationPlayer" parent="."]
+anims/sword1_attack = ExtResource( 1 )
+
+[node name="detector" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2( -8.48862, -16.0652 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

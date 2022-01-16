@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/GUI/MenuButton.gd" type="Script" id=1]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/fonts/PixeloidSans.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MenuButton" type="MenuButton" parent="."]
+margin_right = 16.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 1 )
+toggle_mode = false
+text = "Exit"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MenuButton" to="MenuButton" method="_on_MenuButton_pressed"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/coulmn_base.png" type="Texture" id=1]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/column_top.png" type="Texture" id=2]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/column_mid.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.125, 10 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -0.114662, 3.6396, 5.78754, 0.0760078, 2.78076, -4.82393, -3.34417, -4.71257, -5.57141, -0.814892 )
+
+[node name="column" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.64277 )
+scale = Vector2( 1, 0.560001 )
+shape = SubResource( 1 )
+
+[node name="sprite" type="Node2D" parent="."]
+position = Vector2( 0, -7.875 )
+
+[node name="top" type="Sprite" parent="sprite"]
+position = Vector2( 0, -16 )
+texture = ExtResource( 2 )
+
+[node name="mid" type="Sprite" parent="sprite"]
+texture = ExtResource( 3 )
+
+[node name="bottom" type="Sprite" parent="sprite"]
+position = Vector2( 0, 16.0884 )
+texture = ExtResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 2
+occluder = SubResource( 2 )
+light_mask = 2

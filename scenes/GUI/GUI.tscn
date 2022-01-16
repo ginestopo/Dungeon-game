@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/life-bar-bg.png.png" type="Texture" id=1]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/HP.png.png" type="Texture" id=2]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/life-bar-bg-fill.png.png" type="Texture" id=3]
+[ext_resource path="res://0x72_DungeonTilesetII_v1.4/fonts/PixeloidSans.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/GUI/Label.gd" type="Script" id=5]
+[ext_resource path="res://scenes/GUI/bar.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bar" type="TextureProgress" parent="."]
+margin_left = 80.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 48.0
+rect_scale = Vector2( 2.2, 2.2 )
+value = 25.0
+texture_over = ExtResource( 1 )
+texture_progress = ExtResource( 3 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 38.6637
+margin_top = 8.0
+margin_right = 78.6637
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+text = "100
+"
+align = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 9.49834
+margin_top = 6.21026
+margin_right = 49.4983
+margin_bottom = 46.2103
+rect_scale = Vector2( 0.771553, 0.771553 )
+texture = ExtResource( 2 )
