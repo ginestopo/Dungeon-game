@@ -207,6 +207,18 @@ message = "I told you"
 [node name="Coin" parent="YSort/coins" instance=ExtResource( 11 )]
 position = Vector2( 272, 248 )
 
+[node name="Coin" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
+position = Vector2( 3.96759, -15.3035 )
+
+[node name="Coin2" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
+position = Vector2( 16.3148, 1.04832 )
+
+[node name="Coin3" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
+position = Vector2( -9.04712, -14.3023 )
+
+[node name="Coin4" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
+position = Vector2( 14.3126, -19.9754 )
+
 [node name="Coin2" parent="YSort/coins" instance=ExtResource( 11 )]
 position = Vector2( 296, 232 )
 
