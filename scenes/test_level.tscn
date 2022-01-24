@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/GUI/GUI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/objects/weapons/sword1/sword1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/objects/coin/Coin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/objects/traps/spikes/spikes.tscn" type="PackedScene" id=12]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -20,6 +21,7 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -207,20 +209,20 @@ message = "I told you"
 [node name="Coin" parent="YSort/coins" instance=ExtResource( 11 )]
 position = Vector2( 272, 248 )
 
-[node name="Coin" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
-position = Vector2( 3.96759, -15.3035 )
-
-[node name="Coin2" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
-position = Vector2( 16.3148, 1.04832 )
-
-[node name="Coin3" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
-position = Vector2( -9.04712, -14.3023 )
-
-[node name="Coin4" parent="YSort/coins/Coin" instance=ExtResource( 11 )]
-position = Vector2( 14.3126, -19.9754 )
-
 [node name="Coin2" parent="YSort/coins" instance=ExtResource( 11 )]
 position = Vector2( 296, 232 )
+
+[node name="Coin3" parent="YSort/coins" instance=ExtResource( 11 )]
+position = Vector2( 275.968, 232.697 )
+
+[node name="Coin4" parent="YSort/coins" instance=ExtResource( 11 )]
+position = Vector2( 288.315, 249.048 )
+
+[node name="Coin5" parent="YSort/coins" instance=ExtResource( 11 )]
+position = Vector2( 262.953, 233.698 )
+
+[node name="Coin6" parent="YSort/coins" instance=ExtResource( 11 )]
+position = Vector2( 286.313, 228.025 )
 
 [node name="Map top" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -242,5 +244,8 @@ __meta__ = {
 
 [node name="Exit button" parent="Graphical user interface" instance=ExtResource( 4 )]
 position = Vector2( 304, 8 )
+
+[node name="spikes" parent="." instance=ExtResource( 12 )]
+position = Vector2( 200, 296 )
 
 [connection signal="hit" from="YSort/npc/Player" to="Camera2D" method="_on_Player_hit"]

@@ -1,30 +1,59 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/floor_spikes_anim_f1.png" type="Texture" id=1]
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/floor_spikes_anim_f3.png" type="Texture" id=2]
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/floor_spikes_anim_f2.png" type="Texture" id=3]
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/floor_spikes_anim_f0.png" type="Texture" id=4]
+[ext_resource path="res://scenes/objects/traps/spikes/spikes.gd" type="Script" id=5]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "activated"
+length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../damage_area:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
+[sub_resource type="Animation" id=2]
+resource_name = "desactivating"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 3, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:frame")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -35,8 +64,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../damage_area:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": false,
@@ -44,22 +85,70 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 8, 8 )
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "activated"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "desactivating"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/activated/node = SubResource( 5 )
+states/activated/position = Vector2( 871, 109 )
+states/desactivating/node = SubResource( 6 )
+states/desactivating/position = Vector2( 770, 196 )
+states/idle/node = SubResource( 7 )
+states/idle/position = Vector2( 646, 109 )
+transitions = [ "idle", "activated", SubResource( 8 ), "desactivating", "idle", SubResource( 9 ), "activated", "desactivating", SubResource( 10 ) ]
+start_node = "idle"
+graph_offset = Vector2( 110, 67 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="RectangleShape2D" id=13]
 
 [node name="spikes" type="StaticBody2D"]
+script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite")
 autoplay = "idle"
-anims/activated = SubResource( 2 )
-anims/idle = SubResource( 4 )
+anims/activated = SubResource( 1 )
+anims/desactivating = SubResource( 2 )
+anims/idle = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -8 )
-frames = SubResource( 1 )
+frames = SubResource( 4 )
 animation = "frames"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 12 )
+
+[node name="damage_area" type="Area2D" parent="."]
+position = Vector2( 0, 8 )
+monitorable = false
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
 position = Vector2( 0, -8 )
-shape = SubResource( 5 )
+scale = Vector2( 0.8, 0.8 )
+shape = SubResource( 13 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
