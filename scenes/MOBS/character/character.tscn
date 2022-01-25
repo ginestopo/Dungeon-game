@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/knight_f_idle_anim_f1.png" type="Texture" id=1]
 [ext_resource path="res://0x72_DungeonTilesetII_v1.4/frames/knight_f_idle_anim_f2.png" type="Texture" id=2]
@@ -48,6 +48,9 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=4]
 radius = 104.307
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 3.76688, 2.50756 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 6
 script = ExtResource( 5 )
@@ -62,7 +65,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -13.9068 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -99,5 +102,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemies_visible"]
 shape = SubResource( 4 )
 
+[node name="area2d_detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area2d_detector"]
+position = Vector2( 0, -2.67733 )
+shape = SubResource( 5 )
+
 [connection signal="body_entered" from="enemies_visible" to="." method="_on_enemies_visible_body_entered"]
 [connection signal="body_exited" from="enemies_visible" to="." method="_on_enemies_visible_body_exited"]
+[connection signal="area_entered" from="area2d_detector" to="." method="_on_area2d_detector_area_entered"]
+[connection signal="area_exited" from="area2d_detector" to="." method="_on_area2d_detector_area_exited"]

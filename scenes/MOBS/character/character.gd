@@ -17,6 +17,10 @@ onready var animated_sprite = $AnimatedSprite
 onready var custom_animations = $AnimationPlayer
 onready var damage_sound = $damage_sound
 
+#traps variables
+var in_trap = false
+var damage_spikes = 35;
+
 
 #signals
 signal hit
@@ -71,7 +75,7 @@ func set_animation():
 func collisions():
 	#detect collisions only if damage_cooldown allows
 	if($damage_cooldown.time_left==0.0):
-		#collision
+		#collision with enemies
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			#print("I collided with ", collision.collider.name)
@@ -92,6 +96,15 @@ func collisions():
 				
 				$damage_cooldown.wait_time = damage_cooldown_time
 				$damage_cooldown.start()
+		
+		if(in_trap == true):
+			#damage because of spikes
+			custom_animations.play("damage_blinker")
+			damage_sound.play()
+			emit_signal("hit")
+			loose_health(damage_spikes)
+			$damage_cooldown.wait_time = damage_cooldown_time
+			$damage_cooldown.start()
 
 	#		if(collision.collider is Enemy):
 	#			custom_animations.play("damage_blinker")
@@ -127,3 +140,13 @@ func _on_enemies_visible_body_exited(body):
 #			body.visible = false
 	if body is KinematicBody2D:
 		body.visible = false
+
+
+func _on_area2d_detector_area_entered(area):
+	if("spikes" in area.get_parent().name):
+		in_trap = true
+		
+	
+
+func _on_area2d_detector_area_exited(area):
+	in_trap = false
