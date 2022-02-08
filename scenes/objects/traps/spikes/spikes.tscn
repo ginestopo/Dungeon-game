@@ -129,6 +129,7 @@ anims/desactivating = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 3
 frames = SubResource( 4 )
 animation = "frames"
 
