@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/objects/weapons/sword1/sword1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/objects/coin/Coin.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/objects/traps/spikes/spikes.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/MOBS/Shy Guy/shy_guy.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -21,6 +22,7 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.109804, 0.109804, 0.109804, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -230,6 +232,9 @@ position = Vector2( 256, -224 )
 
 [node name="demon5" parent="YSort/npc" instance=ExtResource( 5 )]
 position = Vector2( 96, -192 )
+
+[node name="shy_guy" parent="YSort/npc" instance=ExtResource( 13 )]
+position = Vector2( 264, 200 )
 
 [node name="weapons" type="YSort" parent="YSort"]
 
