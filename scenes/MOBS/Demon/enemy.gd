@@ -72,7 +72,6 @@ func _on_hitbox_area_entered(area):
 	if(health>0):
 		if area is Sword1: 
 			$damaged.play()
-			print("hit by sword1, health:", health)
 			$AnimationPlayer.play("damaged")
 			health -= 30
 			$health_bar/ProgressBar.value = health
@@ -80,18 +79,16 @@ func _on_hitbox_area_entered(area):
 			if(health < 100): $health_bar.visible = true
 			
 			if(health <= 0):
-				print("dying")
 				$AnimationPlayer.play("dying")
 
 
 func destroy_node():
-	print("destroyed")
 	queue_free()
 	
 
 
 func _on_VisibilityEnabler2D_viewport_exited(viewport):
-	print("exited")
+	pass
 	
 func _disable_collision() -> void:
 	$CollisionShape2D.one_way_collision = true

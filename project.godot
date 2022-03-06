@@ -49,7 +49,7 @@ _global_script_class_icons={
 "Demon": "res://0x72_DungeonTilesetII_v1.4/frames/big_demon_idle_anim_f1.png",
 "Main": "",
 "Player": "res://0x72_DungeonTilesetII_v1.4/frames/knight_f_idle_anim_f0.png",
-"ShyGuy": "",
+"ShyGuy": "res://0x72_DungeonTilesetII_v1.4/frames/skelet_idle_anim_f0.png",
 "Sword1": "res://0x72_DungeonTilesetII_v1.4/frames/weapon_regular_sword.png",
 "camera": ""
 }

@@ -60,7 +60,7 @@ func _physics_process(delta):
 	get_input()
 	set_animation()
 	collisions()
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 
 
