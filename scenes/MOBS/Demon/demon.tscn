@@ -213,10 +213,12 @@ speed = 70
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
+light_mask = 3
 position = Vector2( 0, -16.6489 )
 texture = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 3
 position = Vector2( 0, -18.125 )
 frames = SubResource( 2 )
 animation = "dead"

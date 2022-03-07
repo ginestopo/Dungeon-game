@@ -232,8 +232,37 @@ position = Vector2( 256, -224 )
 [node name="demon5" parent="YSort/npc" instance=ExtResource( 5 )]
 position = Vector2( 96, -192 )
 
-[node name="shy_guy" parent="YSort/npc" instance=ExtResource( 13 )]
-position = Vector2( 264, 200 )
+[node name="shyguys" type="YSort" parent="YSort/npc"]
+
+[node name="shy_guy" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 272, 208 )
+
+[node name="shy_guy2" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 224, 232 )
+
+[node name="shy_guy3" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 184, 184 )
+
+[node name="shy_guy4" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 208, 264 )
+
+[node name="shy_guy5" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 136, 288 )
+
+[node name="shy_guy6" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 96, 176 )
+
+[node name="shy_guy7" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 144, 176 )
+
+[node name="shy_guy8" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 88, 288 )
+
+[node name="shy_guy9" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 136, 232 )
+
+[node name="shy_guy10" parent="YSort/npc/shyguys" instance=ExtResource( 13 )]
+position = Vector2( 256, 176 )
 
 [node name="weapons" type="YSort" parent="YSort"]
 

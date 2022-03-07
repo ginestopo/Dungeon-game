@@ -86,12 +86,14 @@ scale = Vector2( 0.8, 0.8 )
 shape = SubResource( 1 )
 
 [node name="Animation" type="Node2D" parent="."]
+light_mask = 3
 position = Vector2( 0, -8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Animation"]
+light_mask = 3
 frames = SubResource( 2 )
 animation = "run"
-frame = 6
+frame = 3
 
 [node name="animations" type="AnimationPlayer" parent="Animation"]
 anims/idle = SubResource( 3 )

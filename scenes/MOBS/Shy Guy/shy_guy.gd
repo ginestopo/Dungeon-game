@@ -18,10 +18,10 @@ func _ready():
 
 
 func _process(delta):
-	if !not_started_idle:
-		print("timer idle left:", $timers/timer_idle.time_left)
-	else:
-		print("timer moving left:", $timers/timer_moving.time_left)
+#	if !not_started_idle:
+#		print("timer idle left:", $timers/timer_idle.time_left)
+#	else:
+#		print("timer moving left:", $timers/timer_moving.time_left)
 		
 	if $timers/timer_idle.time_left == 0:
 		if not_started_moving:
@@ -33,10 +33,11 @@ func _process(delta):
 			$timers/timer_moving.start()
 			
 			if(velocity.x < 0):
-				self.scale.x = -1
+				print("velocity -")
+				$Animation/AnimatedSprite.flip_h = true
 			else:
-				self.scale.x = 1
-			
+				print("velocity +")
+				$Animation/AnimatedSprite.flip_h = false
 		
 		if $timers/timer_moving.time_left == 0:
 			velocity = Vector2(0,0)
@@ -46,6 +47,5 @@ func _process(delta):
 				$timers/timer_idle.start()
 				not_started_idle = false
 				not_started_moving = true
-			
-			
+				
 	velocity = move_and_slide(velocity.normalized()*speed)
