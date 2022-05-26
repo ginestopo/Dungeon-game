@@ -36,15 +36,15 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "dead",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]

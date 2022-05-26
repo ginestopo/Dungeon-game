@@ -21,6 +21,7 @@ func _ready():
 func _process(delta):
 	press_e.visible = press_e_active
 	$Message.visible = message_shown
+
 	
 	if press_e_active and Input.is_action_pressed("interact"):
 		message_shown = true

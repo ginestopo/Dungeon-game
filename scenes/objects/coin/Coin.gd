@@ -27,6 +27,7 @@ func _process(delta):
 func _on_Area2D_body_entered(body):
 	if(body.name == "Player"):
 		$AnimationPlayer.play("taken")
+		$taken_sound.playing = true
 	
 	
 func bounce_effect(delta):

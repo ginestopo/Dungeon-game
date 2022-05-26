@@ -19,7 +19,7 @@ onready var damage_sound = $damage_sound
 
 #traps variables
 var in_trap = false
-var damage_spikes = 35;
+var damage_spikes = 1;
 
 
 #signals
